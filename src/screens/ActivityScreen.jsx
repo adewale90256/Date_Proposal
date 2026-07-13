@@ -1,7 +1,12 @@
 import Card from "../components/Card";
 import ActivitySection from "../sections/ActivitySection";
 
-function ActivityScreen({ selectedActivity, setSelectedActivity, onContinue }) {
+function ActivityScreen({
+  selectedActivity,
+  setSelectedActivity,
+  onContinue,
+  saving,
+}) {
   return (
     <Card>
       <div className="text-center">
@@ -17,6 +22,7 @@ function ActivityScreen({ selectedActivity, setSelectedActivity, onContinue }) {
           selectedActivity={selectedActivity}
           setSelectedActivity={setSelectedActivity}
           onContinue={onContinue}
+          saving={saving}
         />
       </div>
     </Card>

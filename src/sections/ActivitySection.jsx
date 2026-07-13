@@ -5,6 +5,7 @@ function ActivitySection({
   selectedActivity,
   setSelectedActivity,
   onContinue,
+  saving,
 }) {
   return (
     <div className="mt-8">
@@ -38,11 +39,11 @@ function ActivitySection({
       </div>
 
       <Button
-        disabled={!selectedActivity}
+        disabled={!selectedActivity || saving}
         onClick={onContinue}
         className="mt-8 w-full bg-rose-500 text-white hover:bg-rose-600 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Lock It In ❤️
+        {saving ? "❤️ Saving..." : "Lock It In ❤️"}
       </Button>
     </div>
   );

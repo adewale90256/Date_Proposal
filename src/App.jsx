@@ -9,12 +9,34 @@ import ActivityScreen from "./screens/ActivityScreen";
 import ConfirmationScreen from "./screens/ConfirmationScreen";
 
 import { SCREENS } from "./data/screens";
+import { saveResponse } from "./services/saveResponse";
 
 function App() {
   const [screen, setScreen] = useState(SCREENS.PROPOSAL);
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  async function handleConfirmation() {
+    if (!selectedDate || !selectedActivity) return;
+
+    try {
+      setSaving(true);
+
+      await saveResponse({
+        date: selectedDate.toISOString(),
+        activity: selectedActivity.title,
+      });
+
+      setScreen(SCREENS.CONFIRMATION);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong while saving your response.");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   return (
     <Background>
@@ -40,7 +62,8 @@ function App() {
         <ActivityScreen
           selectedActivity={selectedActivity}
           setSelectedActivity={setSelectedActivity}
-          onContinue={() => setScreen(SCREENS.CONFIRMATION)}
+          onContinue={handleConfirmation}
+          saving={saving}
         />
       )}
 
