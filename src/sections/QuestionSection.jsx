@@ -4,9 +4,7 @@ import MovingButton from "../components/MovingButton";
 function QuestionSection({ onYes }) {
   return (
     <>
-      <p className="mt-4 text-center text-lg text-gray-600">
-        I've been thinking...
-      </p>
+      <p className="mt-4 text-center text-lg text-gray-600">💝</p>
 
       <h2 className="mt-2 text-center text-2xl font-semibold text-gray-800">
         Would you go out with me again?
